@@ -3,10 +3,15 @@ plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.3.72"
     id("org.jlleitschuh.gradle.ktlint") version "9.2.1"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.3.70"
 }
 
 group = "com.mapk"
 version = "0.23"
+
+noArg {
+    annotation("com.wrongwrong.mapk.Data")
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -31,6 +36,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation(kotlin("reflect"))
     api("com.github.ProjectMapK:Shared:0.11")
+
+    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    implementation(group = "org.modelmapper", name = "modelmapper", version = "2.3.6")
 
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter
     testImplementation(group = "org.junit.jupiter", name = "junit-jupiter", version = "5.6.2") {
