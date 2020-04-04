@@ -2,6 +2,7 @@
 
 package com.wrongwrong.mapk
 
+import com.mapk.kmapper.BoundKMapper
 import com.mapk.kmapper.KMapper
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -48,6 +49,7 @@ fun main() {
     )
 
     val kMapper = KMapper(Dst::class)
+    val boundKMapper = BoundKMapper(::Dst, Src::class)
     val modelMapper = ModelMapper()
 
     println("HandWright:\t\t${measureTimeMillis { for (i in 1..limit) Dst(
@@ -62,6 +64,6 @@ fun main() {
     ) }}")
 
     println("KMapper:\t\t${measureTimeMillis { for (i in 1..limit) kMapper.map(src) }}")
-
+    println("BoundKMapper:\t${measureTimeMillis { for (i in 1..limit) boundKMapper.map(src) }}")
     println("ModelMapper:\t${measureTimeMillis { for (i in 1..limit) modelMapper.map(src, Dst::class.java) }}")
 }
